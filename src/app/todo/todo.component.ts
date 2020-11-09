@@ -30,7 +30,7 @@ export class TodoComponent implements OnInit {
 
   addTask = (form: NgForm): void => {
     let newTodo: Todo ={
-      task: form.value.task,
+      task: form.value.newTask,
       completed: form.value.completed === "true" ? true : false,
     };
     form.value.type === "todo" ? this.todos.push(newTodo):

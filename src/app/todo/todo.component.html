@@ -2,8 +2,8 @@
     <section class="todos-container">
         <h1>TODO List</h1>
         <p>A place to store your todos</p>
-        <form #todoForm="ngForm" (ngSubmit)="addTodo(todoForm)">
-        </form>
+        <!-- <form #todoForm="ngForm" (ngSubmit)="addTodo(todoForm)"> -->
+        
             <!-- structural is *="" -->
             <!-- attribute is []="" -->
             <li *ngFor="let todo of todos">
@@ -15,7 +15,7 @@
                     <button>X</button>
                 </div>       
             </li>
-            < #todoForm="ngForm" (ngSubmit)="addTodo(todoForm)"> 
+            <form #todoForm="ngForm" (ngSubmit)="addTask(todoForm)"> 
             <div>
                 <p>New Todo?</p>
                 <label for="newTask">New Task</label>
@@ -36,8 +36,7 @@
             <label for="searchTerm">Search Term</label>
             <input type="text" id="searchTerm" name="searchTerm" ngModel />
             </form>
-        
-        </ol>
+        <!-- </form> -->
     </section>
     
 </main>
