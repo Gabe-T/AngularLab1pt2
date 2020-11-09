@@ -1,0 +1,43 @@
+<main class="main">
+    <section class="todos-container">
+        <h1>TODO List</h1>
+        <p>A place to store your todos</p>
+        <form #todoForm="ngForm" (ngSubmit)="addTodo(todoForm)">
+        </form>
+            <!-- structural is *="" -->
+            <!-- attribute is []="" -->
+            <li *ngFor="let todo of todos">
+                <div class="task-container"> 
+                    <div class="task-start">
+                    <button *ngIf="!todo.completed">Complete</button>
+                    <p [ngClass]="{ strikethrough: todo.completed }">{{todo.task}}</p>
+                    </div>
+                    <button>X</button>
+                </div>       
+            </li>
+            < #todoForm="ngForm" (ngSubmit)="addTodo(todoForm)"> 
+            <div>
+                <p>New Todo?</p>
+                <label for="newTask">New Task</label>
+                <input type="text" name="type" id="newTask" value="newTask" ngModel required/>
+                <!-- <label for="newCompleted">Completed?</label>
+                <input type="radio" name="type" id="newCompleted" value="newCompleted" ngModel required/> -->
+            </div>
+            <div>
+                <p>Completed?</p>
+                <label for="yesCompleted">Yes</label>
+                <input type="radio" name="completed" id="yesCompleted" value="true" ngModel required/>
+                <label for="noCompleted">No</label>
+                <input type="radio" name="completed" id="noCompleted" value="false" ngModel required/>
+              </div>
+              <button [disabled]="todoForm.invalid">Add</button>
+            </form>
+            <form #searchForm="ngForm" (input)="setSearchTerm(searchForm)">
+            <label for="searchTerm">Search Term</label>
+            <input type="text" id="searchTerm" name="searchTerm" ngModel />
+            </form>
+        
+        </ol>
+    </section>
+    
+</main>
