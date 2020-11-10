@@ -1,59 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Todo } from '../interfaces/todo';
-
+import { NgForm } from '@angular/forms';
+// import { runInThisContext } from 'vm';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
   todos: Todo[] = [
     {
-      task: "eat dinner",
+      task: 'eat dinner',
       completed: false,
     },
     {
-      task: "workout",
+      task: 'worked out',
       completed: false,
     },
     {
-      task: "wake up",
+      task: 'wake up',
       completed: true,
     },
   ];
-  formSearchTerm: string = '';
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  addTask = (form: NgForm): void => {
-    let newTodo: Todo ={
-      task: form.value.newTask,
-      completed: form.value.completed === "true" ? true : false,
+  listSearchTerm: string = '';
+  constructor() {}
+  ngOnInit(): void {}
+  addYourToDo = (form: NgForm): void => {
+    let newToDo: Todo = {
+      task: form.value.todo,
+      completed: form.value.completed === 'completed' ? true : false,
     };
-    form.value.type === "todo" ? this.todos.push(newTodo):
+    this.todos.push(newToDo);
     form.reset();
   };
-
-  removeTask = (index: number): void => {
-    this.todos.splice(index, 1);
+  removeTask = (type: string, index: number): void => {
+    if (type === 'todo') {
+      this.todos.splice(index, 1);
+    }
   };
-
-  filterTodos = (): Todo[] => {
-    if (!this.formSearchTerm) {
+  filterList = (): Todo[] => {
+    if (!this.listSearchTerm) {
       return this.todos;
     } else {
-      return this.todos.filter((todos) => {
-        let currentTodo = todos.task.toLowerCase().trim();
-        return currentTodo.includes(this.formSearchTerm.toLowerCase().trim());
+      return this.todos.filter((todo) => {
+        let currentSearch = todo.task.toLowerCase().trim();
+        return currentSearch.includes(this.listSearchTerm.toLowerCase().trim());
       });
     }
   };
-
-  setSearchTerm = (form: NgForm): void => {
-    this.formSearchTerm = form.value.searchTerm;
+  setListSearchTerm = (form: NgForm): void => {
+    this.listSearchTerm = form.value.searchList;
   };
-
 }
