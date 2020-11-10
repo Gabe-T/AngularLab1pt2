@@ -25,7 +25,7 @@ export class TodoComponent implements OnInit {
   listSearchTerm: string = '';
   constructor() {}
   ngOnInit(): void {}
-  addYourToDo = (form: NgForm): void => {
+  addTask = (form: NgForm): void => {
     let newToDo: Todo = {
       task: form.value.todo,
       completed: form.value.completed === 'completed' ? true : false,
@@ -38,6 +38,7 @@ export class TodoComponent implements OnInit {
       this.todos.splice(index, 1);
     }
   };
+
   filterList = (): Todo[] => {
     if (!this.listSearchTerm) {
       return this.todos;
@@ -48,7 +49,13 @@ export class TodoComponent implements OnInit {
       });
     }
   };
-  setListSearchTerm = (form: NgForm): void => {
+  setSearchTerm = (form: NgForm): void => {
     this.listSearchTerm = form.value.searchList;
   };
+
+
+  completeTask = (todo: Todo): void => {
+    todo.completed = true;
+  };
+
 }

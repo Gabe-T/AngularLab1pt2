@@ -1,12 +1,12 @@
 <main class="main">
     <section class="todos-container">
         <h1>TODO List</h1>
-        <form #searchForm="ngForm" (input)="setListSearchTerm(searchForm)">
+        <form #searchForm="ngForm" (input)="setSearchTerm(searchForm)">
             <label for="searchList">Search Todo List</label>
             <input type="text" name="searchList" id="searchList" ngModel>
         </form>
         <p>A place to store your todos</p>
-        <form #toDoForm="ngForm" (ngSubmit)="addYourToDo(toDoForm)">
+        <form #toDoForm="ngForm" (ngSubmit)="addTask(toDoForm)">
             <label for="todo">What is your todo?</label>
             <input type="text" id="todo" name="todo" ngModel required>
             <p>Completed?</p>
@@ -21,10 +21,10 @@
         <li *ngFor="let todo of filterList(), index as i">
             <div class="task-container">
                 <div class="task-start">
-                    <button *ngIf="!todo.completed" (click)="removeTask('todo', i)">Complete</button>
+                    <button *ngIf="!todo.completed" (click)="completeTask(todo)">Completed</button>
                     <p [ngClass]="{strikethrough: todo.completed}">{{todo.task}}</p>
                 </div>
-                <button>X</button>
+                <button (click)="removeTask('todo', i)">X</button>
             </div>
         </li>
         </ol>
